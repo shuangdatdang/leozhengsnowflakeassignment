@@ -1,3 +1,9 @@
+function randomRGB() {
+    let r = randomInt(0,256);
+    let g = randomInt(0, 256);
+    let b = randomInt(0, 256);
+    return "rgb(" + r + ", " + g + ", " + b + ")";
+}
 function fill(color){
     ctx.fillStyle = color;
 }

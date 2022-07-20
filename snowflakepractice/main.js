@@ -40,7 +40,9 @@ function newBubble(initX, initY, initR, initColor){
       color: initColor
   };
 }
-
+function randomInt(low,high){
+    return Math.floor(Math.random() * (high -low) + low);
+}
 function drawBubble(aBubble){
   fill(aBubble.color);
   circle(aBubble.x,aBubble.y,aBubble.r,"fill");
@@ -49,16 +51,12 @@ function drawBubble(aBubble){
 function moveBubble(aBubble){
   aBubble.y += randomInt(0,4);
 }
-
-function randomInt(low,high){
-  return Math.floor(Math.random() * (high -low) + low);
-}
 document.addEventListener("keydown",keypressed);
   function keypressed(event){
-    if (event.keyCode === 13 && bubbles.length < 1600) {
+    if (event.keyCode === 38 && bubbles.length < 1600) {
         more();
     }
-    else if (event.keyCode === 8 && bubbles.length > 10){
+    else if (event.keyCode === 40 && bubbles.length > 10){
         less();
     }
   }
