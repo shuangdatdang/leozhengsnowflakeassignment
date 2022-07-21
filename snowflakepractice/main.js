@@ -6,11 +6,11 @@ cnv.height = 600;
 
 let bubbles = [];
 for (let i = 0; i < 250; i++){
-  bubbles.push(newBubble(randomInt(0,801),randomInt(0,601),randomInt(1,6),"white"));
+  bubbles.push(newRandomBubble());
 }
 function more(){
   for (let i = 0; i < 30; i++){
-    bubbles.push(newBubble(randomInt(0,801),randomInt(0,601),randomInt(1,6),"white"));
+    bubbles.push(newRandomBubble());
   }
 }
 function less(){
@@ -24,21 +24,22 @@ function draw(){
   for (let i = 0; i < bubbles.length; i++){
     moveBubble(bubbles[i]);
     drawBubble(bubbles[i]);
-    if (bubbles[i].y >= 601){
+    if (bubbles[i].y >= cnv.height){
       bubbles[i].y = 0;
-      bubbles[i].x = randomInt(0,801);
+      bubbles[i].x = randomInt(0,cnv.width);
     }
   }
   requestAnimationFrame(draw); 
 }
 
-function newBubble(initX, initY, initR, initColor){
-  return{
-      x:initX,
-      y:initY,
-      r:initR,
-      color: initColor
-  };
+function newRandomBubble(){
+    return{
+        x: randomInt(0, cnv.width),
+        y:randomInt(0, cnv.height * 3/4),
+        r:randomInt(2,5),
+        color: "white",
+        speed: randomInt(2,4)
+    };
 }
 function randomInt(low,high){
     return Math.floor(Math.random() * (high -low) + low);
@@ -49,7 +50,7 @@ function drawBubble(aBubble){
 }
 
 function moveBubble(aBubble){
-  aBubble.y += randomInt(0,4);
+  aBubble.y += aBubble.speed
 }
 document.addEventListener("keydown",keypressed);
   function keypressed(event){
